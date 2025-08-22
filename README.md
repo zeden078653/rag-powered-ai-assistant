@@ -100,7 +100,6 @@ streamlit run streamlit_app.py
 
 ## 💡 Why This Project Matters
 
-This demonstrates practical GenAI applications in education - exactly what Coding Ninjas is building. It shows understanding of:
 - RAG pipelines for knowledge retrieval
 - LLM integration for educational content
 - User-centric design for learners

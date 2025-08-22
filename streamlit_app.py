@@ -14,6 +14,15 @@ from main import AICodeLearningAssistant
 # Load environment variables
 load_dotenv()
 
+# For Streamlit Cloud deployment, also check secrets
+import streamlit as st
+if hasattr(st, 'secrets') and 'GOOGLE_API_KEY' in st.secrets:
+    os.environ['GOOGLE_API_KEY'] = st.secrets['GOOGLE_API_KEY']
+    if 'LANGCHAIN_API_KEY' in st.secrets:
+        os.environ['LANGCHAIN_API_KEY'] = st.secrets['LANGCHAIN_API_KEY']
+    if 'LANGCHAIN_TRACING_V2' in st.secrets:
+        os.environ['LANGCHAIN_TRACING_V2'] = st.secrets['LANGCHAIN_TRACING_V2']
+
 # Page configuration
 st.set_page_config(
     page_title="AI Code Learning Assistant",

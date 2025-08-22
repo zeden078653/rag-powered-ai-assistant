@@ -1,0 +1,147 @@
+Python Programming Fundamentals
+
+Variables and Data Types
+Python supports several built-in data types:
+- int: Integer numbers (e.g., 42, -17)
+- float: Decimal numbers (e.g., 3.14, -2.5)
+- str: Text strings (e.g., "Hello", 'World')
+- bool: Boolean values (True, False)
+- list: Ordered collections (e.g., [1, 2, 3])
+- dict: Key-value pairs (e.g., {"name": "John", "age": 25})
+
+Creating variables is simple:
+name = "Alice"
+age = 30
+height = 5.6
+is_student = True
+
+Lists and List Operations
+Lists are one of the most versatile data structures in Python.
+
+Creating lists:
+numbers = [1, 2, 3, 4, 5]
+fruits = ["apple", "banana", "cherry"]
+mixed = [1, "hello", 3.14, True]
+
+Common list operations:
+- append(): Add item to end
+- insert(): Add item at specific position
+- remove(): Remove first occurrence of item
+- pop(): Remove and return item at index
+- len(): Get list length
+- sort(): Sort list in place
+
+Example:
+fruits = ["apple", "banana"]
+fruits.append("cherry")  # ["apple", "banana", "cherry"]
+fruits.insert(1, "orange")  # ["apple", "orange", "banana", "cherry"]
+
+Loops and Iteration
+Python provides several ways to iterate:
+
+For loops:
+for item in [1, 2, 3]:
+    print(item)
+
+for i in range(5):  # 0, 1, 2, 3, 4
+    print(i)
+
+While loops:
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+Functions
+Functions help organize code and avoid repetition.
+
+Basic function syntax:
+def greet(name):
+    return f"Hello, {name}!"
+
+def add_numbers(a, b):
+    return a + b
+
+# Calling functions
+message = greet("Alice")
+result = add_numbers(5, 3)
+
+Functions with default parameters:
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+Error Handling
+Use try-except blocks to handle errors gracefully:
+
+try:
+    number = int(input("Enter a number: "))
+    result = 10 / number
+    print(f"Result: {result}")
+except ValueError:
+    print("Invalid input! Please enter a number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+File Operations
+Reading and writing files:
+
+# Reading files
+with open("file.txt", "r") as file:
+    content = file.read()
+    print(content)
+
+# Writing files
+with open("output.txt", "w") as file:
+    file.write("Hello, World!")
+
+# Reading line by line
+with open("file.txt", "r") as file:
+    for line in file:
+        print(line.strip())
+
+Object-Oriented Programming
+Classes and objects in Python:
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.grades = []
+    
+    def add_grade(self, grade):
+        self.grades.append(grade)
+    
+    def get_average(self):
+        if self.grades:
+            return sum(self.grades) / len(self.grades)
+        return 0
+
+# Using the class
+student = Student("Alice", 20)
+student.add_grade(85)
+student.add_grade(92)
+average = student.get_average()
+
+Common Python Patterns
+List comprehensions:
+squares = [x**2 for x in range(10)]
+even_numbers = [x for x in range(20) if x % 2 == 0]
+
+Dictionary comprehensions:
+word_lengths = {word: len(word) for word in ["hello", "world", "python"]}
+
+Lambda functions:
+add = lambda x, y: x + y
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+
+Best Practices
+1. Use meaningful variable names
+2. Write docstrings for functions
+3. Follow PEP 8 style guidelines
+4. Handle exceptions appropriately
+5. Use list comprehensions when appropriate
+6. Keep functions small and focused
+7. Use comments to explain complex logic

@@ -1,0 +1,247 @@
+Algorithm Fundamentals and Problem Solving
+
+Time and Space Complexity
+Understanding algorithm efficiency is crucial for writing good code.
+
+Big O Notation:
+- O(1): Constant time - same time regardless of input size
+- O(log n): Logarithmic time - time increases slowly with input size
+- O(n): Linear time - time increases proportionally with input size
+- O(n log n): Linearithmic time - common in efficient sorting algorithms
+- O(n²): Quadratic time - time increases with square of input size
+- O(2^n): Exponential time - time doubles with each additional input
+
+Examples:
+# O(1) - Constant time
+def get_first_element(arr):
+    return arr[0] if arr else None
+
+# O(n) - Linear time
+def find_max(arr):
+    max_val = arr[0]
+    for num in arr:
+        if num > max_val:
+            max_val = num
+    return max_val
+
+# O(n²) - Quadratic time
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+Searching Algorithms
+
+Linear Search:
+def linear_search(arr, target):
+    for i, value in enumerate(arr):
+        if value == target:
+            return i
+    return -1
+
+Binary Search (for sorted arrays):
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+
+Sorting Algorithms
+
+Selection Sort:
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+Insertion Sort:
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+Merge Sort:
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+Data Structures
+
+Stack (LIFO - Last In, First Out):
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return None
+    
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        return None
+    
+    def is_empty(self):
+        return len(self.items) == 0
+
+Queue (FIFO - First In, First Out):
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.items = deque()
+    
+    def enqueue(self, item):
+        self.items.append(item)
+    
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.popleft()
+        return None
+    
+    def is_empty(self):
+        return len(self.items) == 0
+
+Linked List:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def append(self, val):
+        new_node = ListNode(val)
+        if not self.head:
+            self.head = new_node
+            return
+        
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+    
+    def prepend(self, val):
+        new_node = ListNode(val)
+        new_node.next = self.head
+        self.head = new_node
+
+Problem-Solving Strategies
+
+1. Understand the Problem:
+   - Read carefully and identify inputs/outputs
+   - Look for patterns or similar problems
+   - Consider edge cases
+
+2. Plan Your Approach:
+   - Break down into smaller subproblems
+   - Choose appropriate data structures
+   - Consider time/space complexity
+
+3. Implement Step by Step:
+   - Start with a simple solution
+   - Test with examples
+   - Optimize if needed
+
+4. Common Patterns:
+   - Two Pointers: For array problems
+   - Sliding Window: For substring/subarray problems
+   - Hash Maps: For counting and lookups
+   - Recursion: For tree/graph problems
+   - Dynamic Programming: For optimization problems
+
+Example Problem-Solving Process:
+Problem: Find two numbers in an array that sum to a target.
+
+Approach 1 - Brute Force (O(n²)):
+def two_sum_brute(nums, target):
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return []
+
+Approach 2 - Hash Map (O(n)):
+def two_sum_optimized(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
+
+Recursion Fundamentals
+Recursion involves a function calling itself with a smaller problem.
+
+Key components:
+1. Base case: When to stop recursing
+2. Recursive case: How to break down the problem
+
+Example - Factorial:
+def factorial(n):
+    # Base case
+    if n <= 1:
+        return 1
+    # Recursive case
+    return n * factorial(n - 1)
+
+Example - Fibonacci:
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Optimized with memoization
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo)
+    return memo[n]

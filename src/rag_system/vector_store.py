@@ -3,8 +3,8 @@ Vector store management for RAG system
 """
 import chromadb
 from typing import List, Optional
-from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 
 class CodeLearningVectorStore:

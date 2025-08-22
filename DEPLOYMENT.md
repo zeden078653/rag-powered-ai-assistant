@@ -18,7 +18,7 @@
    - Click "New app"
    - Select "From existing repo"
    - Choose your forked repository
-   - Set main file: `streamlit_app.py`
+   - Set main file: `streamlit_app_simple.py`
    - Click "Deploy!"
 
 4. **Add your API keys**
